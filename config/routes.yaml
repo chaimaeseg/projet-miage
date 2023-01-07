@@ -1,3 +1,19 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+home:
+    controller: App\Controller\HomeController::index
+    path: /
+
+form:
+    controller: App\Controller\FormController::index
+    path: /form
+
+categorie:
+    controller: App\Controller\CategorieController::index
+    path: /categ
+
+ajout:
+    controller: App\Controller\AjoutBienController::new
+    path: /ajout

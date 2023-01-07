@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+        {% block title %} Acceuil-Safer
+        {% endblock %}
+
+        {% block body %}
+           {% include 'Partials/navbar.html.twig' %}
+           
+            <table>
+               <tr>
+                  <td> <select name="Catégories" onchange="if(this.value!=''){ document.location.href=this.value }">
+                        <option>Terrain agricole</option>
+                        <option>Prairie</option>
+                        <option>Bois</option>
+                        <option>Batiments</option>
+                        <option>Exploitations</option>
+                  </select></td>
+                  <td><select name="vente/location" onchange="if(this.value!=''){ document.location.href=this.value }">
+                        <option>Location</option>
+                        <option>vente</option>
+                  </select></td>
+                  <td><button>Chercher</button></td>
+               </tr>
+            </table>
+
+           
+              {#} <table> {% for bien in bien %}
+                  <tr>
+                     <td><div class="card"> 
+                           <img src="jeans3.jpg" alt="picture" style="width:100%">
+                           <h1>{{bien.titre}}</h1>
+                           <p class="price">{{bien.prix}}</p><br>
+                           <p>Localisation: {{bien.localisation}}</p>
+                           <p>Surface: {{bien.surface}}</p>
+                           <p>{{bien.description}}</p>
+                           <p><button>Favoris</button></p>
+                      </td>
+                    </tr>
+                {% endfor %}</table>
+               </div>#}
+               
+          <div class="navigation">
+              {{ knp_pagination_render(bien) }}
+         </div>
+            
+
+        {% endblock %}
