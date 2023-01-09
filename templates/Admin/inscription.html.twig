@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+        {% block title %} SAFER - Inscription
+        {% endblock %}
+
+        {% block body %}
+         {% include 'Partials/navbar.html.twig' %}
+         <div class="container">
+                <h1 class="mt-4"> Formulaire de Inscription</h1>
+                 {# Display a message confirming the creation #}
+                    {% for message in app.flashes('succes') %}
+                        <div class="alert alert-success mt-4">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                {{ form(form) }}
+         </div>
+        {% endblock %}

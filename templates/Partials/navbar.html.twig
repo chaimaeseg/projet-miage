@@ -3,9 +3,9 @@
            <!-- Naviguation Bar -->
            <ul>
                 <li><a>SAFER</a></li>
-                <li><a href="/">home</a></li>
-                <li><a href="/categ">Categories</a></li>
+                <li><a href="{{ path('home') }}">home</a></li>
+                <li><a href="{{ path('categorie') }}">Categories</a></li>
                 <li><a href="#">Contact</a></li>
-                <li style="float:right"><a href="form.html.twig">Sign In</a></li>
+                <li style="float:right"><a href="{{ path('login') }}">Sign In</a></li>
             </ul>
 {% endblock %}

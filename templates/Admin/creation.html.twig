@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+        {% block title %} Gestion d'un bien-Admin
+        {% endblock %}
+
+        {% block body %}
+        <a href="{{ path('edit', { id: bien.id }) }}" class="btn btn-info">Modifier</a>
+        <a href="{{ path('delete', { id: bien.id }) }}" class="btn btn-info">Supprimer</a>
+
+        {% endblock %}

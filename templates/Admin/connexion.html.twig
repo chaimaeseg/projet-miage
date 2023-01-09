@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+        {% block title %} SAFER - Connexion
+        {% endblock %}
+
+        {% block body %}
+        {% include 'Partials/navbar.html.twig' %}
+            <div class="container">
+                <h1 class="mt-4"> Formulaire de Connexion</h1>
+                <form action="{{ path('login') }}" method="post">
+                    <div class="form-group">
+                        <label for="login" class="form-label mt-4">Login</label>
+                        <input type="text" class="form-control" id="login" aria-describedby="loginHelp" placeholder="Enter login">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Se Connecter</button>
+                </form>
+            </div>
+        {% endblock %}

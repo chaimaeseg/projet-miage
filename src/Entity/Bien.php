@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BienRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,22 +22,17 @@ class Bien
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $titre;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $surface;
+    private $numero;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $categorie;
+    private $titre;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="text")
      */
-    private $prix;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -43,23 +40,45 @@ class Bien
     private $localisation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $description;
+    private $surface;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $Pour;
+    private $prix;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToMany(targetEntity=Categories::class)
      */
-    private $numero;
+    private $categorie;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isFavorite;
+
+    public function __construct()
+    {
+        $this->categorie = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNumero(): ?string
+    {
+        return $this->numero;
+    }
+
+    public function setNumero(string $numero): self
+    {
+        $this->numero = $numero;
+
+        return $this;
     }
 
     public function getTitre(): ?string
@@ -70,54 +89,6 @@ class Bien
     public function setTitre(string $titre): self
     {
         $this->titre = $titre;
-
-        return $this;
-    }
-
-    public function getSurface(): ?int
-    {
-        return $this->surface;
-    }
-
-    public function setSurface(int $surface): self
-    {
-        $this->surface = $surface;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
-    public function getPrix(): ?int
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(int $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getLocalisation(): ?string
-    {
-        return $this->localisation;
-    }
-
-    public function setLocalisation(string $localisation): self
-    {
-        $this->localisation = $localisation;
 
         return $this;
     }
@@ -134,26 +105,74 @@ class Bien
         return $this;
     }
 
-    public function getPour(): ?string
+    public function getLocalisation(): ?string
     {
-        return $this->Pour;
+        return $this->localisation;
     }
 
-    public function setPour(string $Pour): self
+    public function setLocalisation(string $localisation): self
     {
-        $this->Pour = $Pour;
+        $this->localisation = $localisation;
 
         return $this;
     }
 
-    public function getNumero(): ?string
+    public function getSurface(): ?float
     {
-        return $this->numero;
+        return $this->surface;
     }
 
-    public function setNumero(string $numero): self
+    public function setSurface(float $surface): self
     {
-        $this->numero = $numero;
+        $this->surface = $surface;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categories>
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categories $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(Categories $categorie): self
+    {
+        $this->categorie->removeElement($categorie);
+
+        return $this;
+    }
+
+    public function getIsFavorite(): ?bool
+    {
+        return $this->isFavorite;
+    }
+
+    public function setIsFavorite(bool $isFavorite): self
+    {
+        $this->isFavorite = $isFavorite;
 
         return $this;
     }

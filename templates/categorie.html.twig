@@ -6,6 +6,14 @@
         {% block body %}
            {% include 'Partials/navbar.html.twig' %}
            
+           {# Display a message confirming the creation #}
+           {% for message in app.flashes('succes') %}
+               <div class="alert alert-success mt-4">
+                  {{ message }}
+               </div>
+           {% endfor %}
+
+            {#  #}
             <table>
                <tr>
                   <td> <select name="Catégories" onchange="if(this.value!=''){ document.location.href=this.value }">
@@ -23,8 +31,8 @@
                </tr>
             </table>
 
-           
-              {#} <table> {% for bien in bien %}
+           {% for bien in bien %}
+              <table> 
                   <tr>
                      <td><div class="card"> 
                            <img src="jeans3.jpg" alt="picture" style="width:100%">
@@ -36,8 +44,8 @@
                            <p><button>Favoris</button></p>
                       </td>
                     </tr>
-                {% endfor %}</table>
-               </div>#}
+                </table>
+               </div>{% endfor %}
                
           <div class="navigation">
               {{ knp_pagination_render(bien) }}
